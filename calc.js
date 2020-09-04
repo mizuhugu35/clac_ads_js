@@ -51,6 +51,10 @@ function GenMultiTable(id){
     }
 }
 
+function isString(obj) {
+    return typeof (obj) == "string" || obj instanceof String;
+};
+
 function calc(h_fov, v_fov, fov_a, ap_x, ap_y, old_ads, new_ads){
     var h_fov_e = document.getElementById(h_fov);
     var v_fov_e = document.getElementById(v_fov);
@@ -61,6 +65,11 @@ function calc(h_fov, v_fov, fov_a, ap_x, ap_y, old_ads, new_ads){
     var new_ads_e = document.getElementById(new_ads);
     var table_idx = document.getElementById('multi-table').value;
 
+    if(v_fov_e.value<0||ap_x_e.value<0||ap_y_e.value<0||old_ads_e.value<0){
+        alert("パラメータの値が不正です");
+        return;
+    }
+    
     var H_fov = HorizontalFov(v_fov_e.value, ap_x_e.value, ap_y_e.value);
     var F_adj = FovAdjustment(multi_table_[table_idx][1], v_fov_e.value);
     var N_ads = CalcNewADS(multi_table_[table_idx][2], F_adj, old_ads_e.value);
