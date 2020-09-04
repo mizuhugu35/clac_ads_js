@@ -1,0 +1,27 @@
+html{
+    font-family: sans-serif;
+    color: #2e2e2e;
+    margin: 0;
+}
+
+input{
+    border: 0.5px solid #2e2e2e;
+    border-radius: 3px;
+    padding: 5px 8px;
+}
+
+th{
+    font-size: 13px;
+}
+
+th, td{
+    padding: 5px;
+}
+
+[readonly]{
+    background: #e0e0e0;
+}
+
+.button-div{
+    width: 100%;
+}

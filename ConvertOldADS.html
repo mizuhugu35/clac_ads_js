@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="for test site">
+        <meta name="author"      content="Tomoo Kikuchi">
+        <meta name="generator"   content="emacs">
+        <meta name="viewport"    content="width=device-width,initial-scale=1.0">
+        <title>TITLE</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="calc.js"></script>
+    </head>
+    <body>
+        <script>
+         window.onload = function(){
+             GenMultiTable('multi-table');
+         };
+        </script>
+        <header>
+            <h1>ああああああああああああ</h1>
+            <small>created by mizuhugu35 てきとうなのでゆるして</small>
+        </header>    
+        <main>
+            <table border="1">
+                <tr>
+                    <th>magnification</th>
+                    <td>
+                        <select id="multi-table">
+                            <!-- GenMultiTable gen -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>FOV(deg)</th>
+                    <td>
+                        <input type="text" id="vertical-fov" value="60" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Horizontal FOV</th>
+                    <td>
+                        <input type="text" id="horizontal-fov" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>FOV Adjustment</th>
+                    <td>
+                        <input type="text" id="fov-adjustment" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Aspect Ration</th>
+                    <td>
+                        <input type="text" id="aspect-x" value="16" /> :
+                        <input type="text" id="aspect-y" value="9" />                        
+                    </td>
+                </tr>
+                <tr>
+                    <th>Old ADS</th>
+                    <td>
+                        <input type="text" id="old-ads"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>New ADS</th>
+                    <td>
+                        <input type="text" id="new-ads" readonly/>
+                    </td>
+                </tr>
+            </table>
+            <div class="button-div">
+                <button onclick="calc('horizontal-fov', 'vertical-fov', 'fov-adjustment', 'aspect-x', 'aspect-y', 'old-ads', 'new-ads');">Clac</button>
+            </div>
+        </main>
+    </body>
+</html>
