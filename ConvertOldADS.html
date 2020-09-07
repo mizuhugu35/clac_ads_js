@@ -6,8 +6,44 @@
         <meta name="author"      content="mizuhugu35">
         <meta name="generator"   content="emacs">
         <meta name="viewport"    content="width=device-width,initial-scale=1.0">
-        <title>あいうえおaaa</title>
-        <link rel="stylesheet" href="style.css">
+        <title>\(-_-)/</title>
+        <!-- 拡張機能でblockされるので直接埋め込んだ -->
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <style type="text/css">
+         html{
+             font-family: sans-serif;
+             color: #2e2e2e;
+             margin: 0;
+         }
+
+         input{
+             border: 0.5px solid #2e2e2e;
+             border-radius: 3px;
+             padding: 5px 8px;
+         }
+
+         th{
+             font-size: 13px;
+         }
+
+         th, td{
+             padding: 5px;
+         }
+
+         [readonly]{
+             background: #e0e0e0;
+         }
+
+         .button-div{
+             width: 100%;
+         }
+
+         h1:hover{
+             transform: scale(200);
+             transition: 0.5s;
+         }
+         
+        </style>
         <script>
          multi_table_ =
              [[1.0, 0.9, 0.6],
@@ -18,94 +54,94 @@
               [4.0, 0.3,  0.3],
               [5.0, 0.22, 0.22],
               [12.0, 0.092, 0.14]];
-
-         PI_ = 3.1415926535897932;
-
+         
+             PI_ = 3.1415926535897932;
+         
          function DecToRad(deg){
              console.log("DEBUG: DegToRad called.");
              return deg*(PI_/180.0);
          }
 
-         function RadToDec(rad){
-             console.log("DEBUG: RadToDeg called.");
-             return rad*(180.0/PI_);
-         }
-
-         function HorizontalFov(vertical_fov, aspect_ratio_x, aspect_ratio_y){
-             console.log("DEBUG: calc horizontal fov.");
-             let AspectRatio = (aspect_ratio_x / aspect_ratio_y);
-             let VerticalFovHalf_rad = DecToRad(vertical_fov/2.0);
-             let Arctan_arg = (Math.tan(VerticalFovHalf_rad) * AspectRatio);
-             return 2 * RadToDec(Math.atan(Arctan_arg));
-         }
-
-         function VerticalFov(aspect_ratio_x, aspect_ratio_y){
-             console.log("DEBUG: calc vertical fov.");
-             let AspectRatio = (aspect_ratio_x / aspect_ratio_y);
-             let Arctan_arg = Math.tan(DecToRad(75)/AspectRatio);
-             return 2 * Math.atan(Arctan_arg);
-         }
-
-         function FovAdjustment(fov_multi, vertical_fov){
-             let Tan_arg0 = DecToRad((fov_multi * vertical_fov)/ 2.0);
-             let Tan_arg1 = DecToRad(vertical_fov/2.0);
-             return Math.tan(Tan_arg0)/Math.tan(Tan_arg1);
-         }
-
-         function CalcNewADS(ads_multi, fov_adj, old_ads){
-             return (ads_multi/fov_adj)*old_ads;
-         }
-
-         function GenMultiTable(id){
-             console.log("DEBUG: [INFO] Genmultitable called.");
-             var select_elem = document.getElementById(id);
-             if(select_elem==undefined) console.log("DEBUG: [ERROR] Multi table is undefined.");
-             
-             for(let i=0; i<8; i++){
-                 let elem = document.createElement('option');
-                 elem.value = i;
-                 elem.innerHTML = multi_table_[i][0];        
-                 select_elem.appendChild(elem);
-                 console.log("DEBUG: [INFO] append child element to ID["+id+"]. child info->", elem);        
+             function RadToDec(rad){
+                 console.log("DEBUG: RadToDeg called.");
+                 return rad*(180.0/PI_);
              }
-         }
 
-         function isString(obj) {
-             return typeof (obj) == "string" || obj instanceof String;
-         };
-
-         function calc(h_fov, v_fov, fov_a, ap_x, ap_y, old_ads, new_ads){
-             console.log("DEBUG: starting calculation...");
-             
-             var h_fov_e = document.getElementById(h_fov);
-             var v_fov_e = document.getElementById(v_fov);
-             var fov_a_e = document.getElementById(fov_a);
-             var ap_x_e  = document.getElementById(ap_x);
-             var ap_y_e  = document.getElementById(ap_y);
-             var old_ads_e = document.getElementById(old_ads);
-             var new_ads_e = document.getElementById(new_ads);
-             var table_idx = document.getElementById('multi-table').value;
-
-             if(v_fov_e.value<0||ap_x_e.value<0||ap_y_e.value<0||old_ads_e.value<0){
-                 alert("パラメータの値が不正です");
-                 return;
+             function HorizontalFov(vertical_fov, aspect_ratio_x, aspect_ratio_y){
+                 console.log("DEBUG: calc horizontal fov.");
+                 let AspectRatio = (aspect_ratio_x / aspect_ratio_y);
+                 let VerticalFovHalf_rad = DecToRad(vertical_fov/2.0);
+                 let Arctan_arg = (Math.tan(VerticalFovHalf_rad) * AspectRatio);
+                 return 2 * RadToDec(Math.atan(Arctan_arg));
              }
-             
-             var H_fov = HorizontalFov(v_fov_e.value, ap_x_e.value, ap_y_e.value);
-             var F_adj = FovAdjustment(multi_table_[table_idx][1], v_fov_e.value);
-             var N_ads = CalcNewADS(multi_table_[table_idx][2], F_adj, old_ads_e.value);
 
-             h_fov_e.value = H_fov;
-             fov_a_e.value = F_adj;
-             new_ads_e.value = N_ads;
+             function VerticalFov(aspect_ratio_x, aspect_ratio_y){
+                 console.log("DEBUG: calc vertical fov.");
+                 let AspectRatio = (aspect_ratio_x / aspect_ratio_y);
+                 let Arctan_arg = Math.tan(DecToRad(75)/AspectRatio);
+                 return 2 * Math.atan(Arctan_arg);
+             }
 
-             console.log("DEBUG: finished calculation.");
-         }
-        </script>
+             function FovAdjustment(fov_multi, vertical_fov){
+                 let Tan_arg0 = DecToRad((fov_multi * vertical_fov)/ 2.0);
+                 let Tan_arg1 = DecToRad(vertical_fov/2.0);
+                 return Math.tan(Tan_arg0)/Math.tan(Tan_arg1);
+             }
+
+             function CalcNewADS(ads_multi, fov_adj, old_ads){
+                 return (ads_multi/fov_adj)*old_ads;
+             }
+
+             function GenMultiTable(id){
+                 console.log("DEBUG: [INFO] Genmultitable called.");
+                 var select_elem = document.getElementById(id);
+                 if(select_elem==undefined) console.log("DEBUG: [ERROR] Multi table is undefined.");
+                 
+                 for(let i=0; i<8; i++){
+                     let elem = document.createElement('option');
+                     elem.value = i;
+                     elem.innerHTML = multi_table_[i][0];        
+                     select_elem.appendChild(elem);
+                     console.log("DEBUG: [INFO] append child element to ID["+id+"]. child info->", elem);        
+                 }
+             }
+
+             function isString(obj) {
+                 return typeof (obj) == "string" || obj instanceof String;
+             };
+
+             function calc(h_fov, v_fov, fov_a, ap_x, ap_y, old_ads, new_ads){
+                 console.log("DEBUG: starting calculation...");
+                 
+                 var h_fov_e = document.getElementById(h_fov);
+                 var v_fov_e = document.getElementById(v_fov);
+                 var fov_a_e = document.getElementById(fov_a);
+                 var ap_x_e  = document.getElementById(ap_x);
+                 var ap_y_e  = document.getElementById(ap_y);
+                 var old_ads_e = document.getElementById(old_ads);
+                 var new_ads_e = document.getElementById(new_ads);
+                 var table_idx = document.getElementById('multi-table').value;
+
+                 if(v_fov_e.value<0||ap_x_e.value<0||ap_y_e.value<0||old_ads_e.value<0){
+                     alert("パラメータの値が不正です");
+                     return;
+                 }
+                 
+                 var H_fov = HorizontalFov(v_fov_e.value, ap_x_e.value, ap_y_e.value);
+                 var F_adj = FovAdjustment(multi_table_[table_idx][1], v_fov_e.value);
+                 var N_ads = CalcNewADS(multi_table_[table_idx][2], F_adj, old_ads_e.value);
+
+                 h_fov_e.value = H_fov;
+                 fov_a_e.value = F_adj;
+                 new_ads_e.value = N_ads;
+
+                 console.log("DEBUG: finished calculation.");
+             }
+            </script>
     </head>
     <body>
         <header>
-            <h1>ああああああああああああ</h1>
+            <h1>aaaaaaaa</h1>
             <small>created by mizuhugu35 てきとうなのでゆるして</small>
         </header>    
         <main>
